@@ -5,23 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GVP</title>
 
-  <!-- Ícones para iOS (Safari), Android e Windows -->
+  <!-- Ícones oficiais do GVP -->
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
 
-  <!-- Configurações para Web App no iOS -->
+  <!-- Configurações Web App para iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="GVP">
 
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    .card {
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .icon-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      margin-bottom: 15px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      color: #0078D7;
+    }
+    p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.4;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #0078D7;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 20px;
+      box-sizing: border-box;
+    }
+  </style>
+
   <script>
-    // Redireciona automaticamente para o Web App do Apps Script
-    window.location.href = "https://script.google.com/macros/s/AKfycbyt6a6FJ7ITAyGwkT0B41hru_fqFNLbwnMzKMy7opDM7QKkj3UI1qrzAdWBIoBrnI27/exec";
+    const APP_URL = "https://script.google.com/macros/s/AKfycbyt6a6FJ7ITAyGwkT0B41hru_fqFNLbwnMzKMy7opDM7QKkj3UI1qrzAdWBIoBrnI27/exec";
+
+    // Se já foi aberto a partir do ecrã inicial (modo Web App instalado), redireciona imediatamente
+    if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+      window.location.href = APP_URL;
+    }
   </script>
 </head>
 <body>
-  <p style="text-align:center; font-family:sans-serif; margin-top:50px; font-size: 20px; color: #0078D7;">
-    Carregando o GVP...
-  </p>
+
+  <div class="card">
+    <img class="icon-img" src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png" alt="Ícone GVP">
+    <h2>App GVP</h2>
+    <p>Para adicionar o ícone ao seu telemóvel, toque em <b>Partilhar</b> e selecione <b>Adicionar ao Ecrã Principal</b>.</p>
+    
+    <a class="btn" href="https://script.google.com/macros/s/AKfycbyt6a6FJ7ITAyGwkT0B41hru_fqFNLbwnMzKMy7opDM7QKkj3UI1qrzAdWBIoBrnI27/exec">Abrir Aplicação</a>
+  </div>
+
 </body>
 </html>

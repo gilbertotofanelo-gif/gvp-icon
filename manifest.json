@@ -1,25 +1,22 @@
+```json
 {
   "name": "GVP",
   "short_name": "GVP",
-  "start_url": ".",
+  "description": "Sistema GVP",
+  "lang": "pt-BR",
+  "start_url": "/gvp-icon/",
+  "scope": "/gvp-icon/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1a73e8",
+  "theme_color": "#0078D7",
   "icons": [
     {
-      "src": "https://gilbertotofanelo-gif.github.io/gvp-icon/GVP-Icon-180.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "https://gilbertotofanelo-gif.github.io/gvp-icon/GVP-Icon-192.png",
+      "src": "https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://gilbertotofanelo-gif.github.io/gvp-icon/GVP-Icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
+```
+

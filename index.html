@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
   <meta charset="UTF-8">
 
   <meta name="viewport"
@@ -8,18 +9,24 @@
 
   <title>GVP</title>
 
-  <!-- Ícone do GVP -->
+  <!-- Manifest para Android -->
+  <link
+    rel="manifest"
+    href="manifest.json">
+
+  <!-- Ícone para iPhone/iPad -->
   <link
     rel="apple-touch-icon"
     sizes="180x180"
     href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
 
+  <!-- Ícone para navegadores -->
   <link
     rel="icon"
     type="image/png"
     href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
 
-  <!-- Modo aplicativo do iOS -->
+  <!-- Configuração do aplicativo no iOS -->
   <meta
     name="apple-mobile-web-app-capable"
     content="yes">
@@ -31,6 +38,10 @@
   <meta
     name="apple-mobile-web-app-title"
     content="GVP">
+
+  <meta
+    name="theme-color"
+    content="#0078D7">
 
   <style>
 
@@ -51,22 +62,29 @@
 
     h1 {
       margin-top: 15px;
+      margin-bottom: 20px;
       color: #0078D7;
+      font-size: 30px;
     }
 
-    p {
-      font-size: 17px;
+    .instrucao {
+      margin: 25px auto 0;
+      max-width: 360px;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f2f2f2;
+      color: #333333;
+      font-size: 19px;
       line-height: 1.5;
+      font-weight: bold;
     }
 
-    button {
-      margin-top: 20px;
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background: #0078D7;
-      color: white;
+    .observacao {
+      margin: 18px auto 0;
+      max-width: 360px;
+      color: #666666;
+      font-size: 16px;
+      line-height: 1.4;
     }
 
   </style>
@@ -77,15 +95,33 @@
       "https://script.google.com/macros/s/AKfycbyt6a6FJ7ITAyGwkT0B41hru_fqFNLbwnMzKMy7opDM7QKkj3UI1qrzAdWBIoBrnI27/exec";
 
     /*
-      Só abre o Apps Script automaticamente
-      quando este index.html estiver sendo
-      executado como aplicativo da Tela de Início.
+      iPhone/iPad:
+      identifica quando a página foi aberta
+      pelo ícone da Tela de Início.
     */
     if (window.navigator.standalone === true) {
 
       window.location.href = urlGVP;
 
     }
+
+    /*
+      Android / Chrome:
+      identifica quando a página foi aberta
+      em modo standalone através do manifest.
+    */
+    window.addEventListener('DOMContentLoaded', function () {
+
+      const standalone =
+        window.matchMedia('(display-mode: standalone)').matches;
+
+      if (standalone) {
+
+        window.location.href = urlGVP;
+
+      }
+
+    });
 
   </script>
 
@@ -95,23 +131,20 @@
 
   <img
     src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png"
-    alt="GVP">
+    alt="Ícone GVP">
 
   <h1>GVP</h1>
 
-  <p>
-    Sistema GVP
-  </p>
+  <div class="instrucao">
+    Execute "Adicionar à Tela de Início".
+  </div>
 
-  <p>
-    Adicione este aplicativo à Tela de Início
-    para acessar o GVP.
-  </p>
-
-  <button
-    onclick="window.location.href = urlGVP;">
-    Abrir GVP
-  </button>
+  <div class="observacao">
+    Depois, toque no ícone GVP que será criado
+    na Tela de Início para acessar o sistema.
+  </div>
 
 </body>
 </html>
+
+

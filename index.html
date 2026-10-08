@@ -2,24 +2,116 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>GVP</title>
 
-  <!-- Ícone para iOS e navegadores -->
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
+  <!-- Ícone do GVP -->
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="GVP">
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png">
+
+  <!-- Modo aplicativo do iOS -->
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes">
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default">
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="GVP">
+
+  <style>
+
+    body {
+      margin: 0;
+      padding: 30px 20px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-top: 20px;
+    }
+
+    h1 {
+      margin-top: 15px;
+      color: #0078D7;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #0078D7;
+      color: white;
+    }
+
+  </style>
 
   <script>
-    window.location.href = "https://script.google.com/macros/s/AKfycbyt6a6FJ7ITAyGwkT0B41hru_fqFNLbwnMzKMy7opDM7QKkj3UI1qrzAdWBIoBrnI27/exec";
+
+    const urlGVP =
+      "https://script.google.com/macros/s/AKfycbyt6a6FJ7ITAyGwkT0B41hru_fqFNLbwnMzKMy7opDM7QKkj3UI1qrzAdWBIoBrnI27/exec";
+
+    /*
+      Só abre o Apps Script automaticamente
+      quando este index.html estiver sendo
+      executado como aplicativo da Tela de Início.
+    */
+    if (window.navigator.standalone === true) {
+
+      window.location.href = urlGVP;
+
+    }
+
   </script>
+
 </head>
+
 <body>
-  <p style="text-align:center; font-family:sans-serif; margin-top:50px; font-size: 20px; color: #0078D7;">
-    Carregando o GVP...
+
+  <img
+    src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP-Icon-180.png"
+    alt="GVP">
+
+  <h1>GVP</h1>
+
+  <p>
+    Sistema GVP
   </p>
+
+  <p>
+    Adicione este aplicativo à Tela de Início
+    para acessar o GVP.
+  </p>
+
+  <button
+    onclick="window.location.href = urlGVP;">
+    Abrir GVP
+  </button>
+
 </body>
 </html>

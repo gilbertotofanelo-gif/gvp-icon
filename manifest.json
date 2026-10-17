@@ -2,6 +2,7 @@
   "name": "Visitas",
   "short_name": "Visitas",
   "description": "Sistema GVP",
+   "_nota": "Este manifest é usado apenas no Android/Chrome",
   "lang": "pt-BR",
   "start_url": "/gvp-icon/",
   "scope": "/gvp-icon/",

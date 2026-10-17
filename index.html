@@ -10,41 +10,23 @@
   <title>GVP</title>
 
   <!-- Manifest para Android -->
-  <link
-    rel="manifest"
-    href="manifest.json">
+  <link rel="manifest" href="manifest.json">
 
   <!-- Ícone para iPhone/iPad -->
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png">
+  <link rel="apple-touch-icon" sizes="180x180"
+        href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png">
           
   <!-- Ícone para navegadores -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png">
+  <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png">
 
   <!-- Configuração do aplicativo no iOS -->
-  <meta
-    name="apple-mobile-web-app-capable"
-    content="yes">
-
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="default">
-
-  <meta
-    name="apple-mobile-web-app-title"
-    content="Visitas">
-
-  <meta
-    name="theme-color"
-    content="#0078D7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Visitas">
+  <meta name="theme-color" content="#0078D7">
 
   <style>
-
     body {
       margin: 0;
       padding: 30px 20px;
@@ -74,9 +56,15 @@
       border-radius: 12px;
       background: #f2f2f2;
       color: #333333;
-      font-size: 19px;
+      font-size: 18px;
       line-height: 1.5;
-      font-weight: bold;
+      text-align: left;
+    }
+
+    .instrucao h2 {
+      margin-top: 0;
+      color: #0078D7;
+      font-size: 20px;
     }
 
     .observacao {
@@ -85,66 +73,63 @@
       color: #666666;
       font-size: 16px;
       line-height: 1.4;
+      text-align: center;
     }
-
   </style>
 
   <script>
-
     const urlGVP =
       "https://script.google.com/macros/s/AKfycbwuLAkahBekBJ_TTDYs4Yr7ZcdcsFGICnRoA1jVAfwXrywGDdLjulS0U4CT15h_ifSd/exec";
-    /*
-      Este é o link do GVP - Icone (no google Script)
-      iPhone/iPad:
-      identifica quando a página foi aberta
-      pelo ícone da Tela de Início.
-    */
+
+    // iPhone/iPad: identifica quando a página foi aberta pelo ícone da Tela de Início.
     if (window.navigator.standalone === true) {
-
       window.location.href = urlGVP;
-
     }
 
-    /*
-      Android / Chrome:
-      identifica quando a página foi aberta
-      em modo standalone através do manifest.
-    */
+    // Android / Chrome: identifica quando a página foi aberta em modo standalone através do manifest.
     window.addEventListener('DOMContentLoaded', function () {
-
-      const standalone =
-        window.matchMedia('(display-mode: standalone)').matches;
-
+      const standalone = window.matchMedia('(display-mode: standalone)').matches;
       if (standalone) {
-
         window.location.href = urlGVP;
-
       }
-
     });
-
   </script>
 
 </head>
 
 <body>
 
-  <img
-    src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png"
-    alt="Ícone GVP">
+  <img src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png"
+       alt="Ícone GVP">
 
   <h1>GVP</h1>
 
+  <!-- Instruções para Android -->
   <div class="instrucao">
-    Execute "Adicionar à Tela de Início".
+    <h2>📱 Para Android</h2>
+    <ol>
+      <li>Abra esta página no navegador <strong>Chrome</strong>.</li>
+      <li>No menu (⋮), escolha <strong>"Adicionar à tela inicial"</strong>.</li>
+      <li>Confirme o nome do ícone como <strong>GVP</strong>.</li>
+      <li>O ícone será criado na tela inicial. Toque nele para abrir o sistema.</li>
+    </ol>
+  </div>
+
+  <!-- Instruções para iOS -->
+  <div class="instrucao">
+    <h2>🍎 Para iOS (iPhone/iPad)</h2>
+    <ol>
+      <li>Abra esta página no navegador <strong>Safari</strong>.</li>
+      <li>Toque no botão <strong>Compartilhar</strong> (ícone quadrado com seta para cima).</li>
+      <li>Selecione <strong>"Adicionar à Tela de Início"</strong>.</li>
+      <li>Confirme o nome do ícone como <strong>GVP</strong>.</li>
+      <li>O ícone será criado na tela inicial. Toque nele para abrir o sistema.</li>
+    </ol>
   </div>
 
   <div class="observacao">
-    Depois, toque no ícone GVP que será criado
-    na Tela de Início para acessar o sistema..
+    Depois de adicionar, basta tocar no ícone GVP criado na tela inicial para acessar o sistema.
   </div>
 
 </body>
 </html>
-
-

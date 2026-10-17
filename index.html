@@ -7,7 +7,7 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>GVP</title>
+  <title>Visitas</title>
 
   <!-- Manifest para Android -->
   <link rel="manifest" href="manifest.json">
@@ -78,19 +78,19 @@
   </style>
 
   <script>
-    const urlGVP =
+    const urlVisitas =
       "https://script.google.com/macros/s/AKfycbwuLAkahBekBJ_TTDYs4Yr7ZcdcsFGICnRoA1jVAfwXrywGDdLjulS0U4CT15h_ifSd/exec";
 
     // iPhone/iPad: identifica quando a página foi aberta pelo ícone da Tela de Início.
     if (window.navigator.standalone === true) {
-      window.location.href = urlGVP;
+      window.location.href = urlVisitas;
     }
 
     // Android / Chrome: identifica quando a página foi aberta em modo standalone através do manifest.
     window.addEventListener('DOMContentLoaded', function () {
       const standalone = window.matchMedia('(display-mode: standalone)').matches;
       if (standalone) {
-        window.location.href = urlGVP;
+        window.location.href = urlVisitas;
       }
     });
   </script>
@@ -100,9 +100,9 @@
 <body>
 
   <img src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png"
-       alt="Ícone GVP">
+       alt="Ícone Visitas">
 
-  <h1>GVP</h1>
+  <h1>Visitas</h1>
 
   <!-- Instruções para Android -->
   <div class="instrucao">
@@ -110,7 +110,7 @@
     <ol>
       <li>Abra esta página no navegador <strong>Chrome</strong>.</li>
       <li>No menu (⋮), escolha <strong>"Adicionar à tela inicial"</strong>.</li>
-      <li>Confirme o nome do ícone como <strong>GVP</strong>.</li>
+      <li>Confirme o nome do ícone como <strong>Visitas</strong>.</li>
       <li>O ícone será criado na tela inicial. Toque nele para abrir o sistema.</li>
     </ol>
   </div>
@@ -122,13 +122,13 @@
       <li>Abra esta página no navegador <strong>Safari</strong>.</li>
       <li>Toque no botão <strong>Compartilhar</strong> (ícone quadrado com seta para cima).</li>
       <li>Selecione <strong>"Adicionar à Tela de Início"</strong>.</li>
-      <li>Confirme o nome do ícone como <strong>GVP</strong>.</li>
+      <li>Confirme o nome do ícone como <strong>Visitas</strong>.</li>
       <li>O ícone será criado na tela inicial. Toque nele para abrir o sistema.</li>
     </ol>
   </div>
 
   <div class="observacao">
-    Depois de adicionar, basta tocar no ícone GVP criado na tela inicial para acessar o sistema.
+    Depois de adicionar, basta tocar no ícone <strong>Visitas</strong> criado na tela inicial para acessar o sistema.
   </div>
 
 </body>

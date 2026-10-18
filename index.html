@@ -1,25 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVP</title>
+
+  <!-- Ícone para iPhone/iPad (Usando GitHub Pages para não quebrar) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gilbertotofanelo-gif.github.io/gvp-icon/GVP_Icon_Hospital_192.png">
+  <link rel="icon" type="image/png" href="https://gilbertotofanelo-gif.github.io/gvp-icon/GVP_Icon_Hospital_192.png">
+
+  <!-- Configuração do aplicativo no iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Visitas">
+  <meta name="theme-color" content="#0078D7">
+
+  <style>
+    body { margin: 0; padding: 30px 20px; font-family: Arial, sans-serif; text-align: center; background: #ffffff; }
+    img { width: 180px; height: 180px; object-fit: contain; margin-top: 20px; }
+    h1 { margin-top: 15px; margin-bottom: 20px; color: #0078D7; font-size: 30px; }
+    .instrucao { margin: 25px auto 0; max-width: 360px; padding: 18px; border-radius: 12px; background: #f2f2f2; color: #333333; font-size: 19px; line-height: 1.5; font-weight: bold; }
+    .observacao { margin: 18px auto 0; max-width: 360px; color: #666666; font-size: 16px; line-height: 1.4; }
+  </style>
+
   <script>
-    const urlGVP = "const urlGVP = "https://script.google.com/macros/s/AKfycbwuLAkahBekBJ_TTDYs4Yr7ZcdcsFGICnRoA1jVAfwXrywGDdLjulS0U4CT15h_ifSd/exec";";
-    // 🔥 CAPTURA O TOKEN DA URL (?d=...)
+    const urlGVP = "https://script.google.com/macros/s/AKfycbwuLAkahBekBJ_TTDYs4Yr7ZcdcsFGICnRoA1jVAfwXrywGDdLjulS0U4CT15h_ifSd/exec";
+    
+    // Pega o token da URL (?d=...)
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('d');
     
-    // Monta a URL final do GAS (com o token, se existir)
     let urlFinal = urlGVP;
     if (token) {
         urlFinal += "?d=" + encodeURIComponent(token);
     }
 
-    // iPhone/iPad: identifica quando a página foi aberta pelo ícone da Tela de Início.
+    // Se o app for aberto pelo ícone (Standalone), redireciona para o GAS
     if (window.navigator.standalone === true) {
-        window.location.href = urlFinal;
+        window.location.replace(urlFinal);
     }
 
-    // Android / Chrome: identifica quando a página foi aberta em modo standalone.
     window.addEventListener('DOMContentLoaded', function () {
         const standalone = window.matchMedia('(display-mode: standalone)').matches;
         if (standalone) {
-            window.location.href = urlFinal;
+            window.location.replace(urlFinal);
         }
     });
   </script>
+</head>
+
+<body>
+  <!-- Imagem corrigida para o GitHub Pages -->
+  <img src="https://gilbertotofanelo-gif.github.io/gvp-icon/GVP_Icon_Hospital_192.png" alt="Ícone GVP">
+
+  <h1>GVP</h1>
+
+  <div class="instrucao">
+    Toque em <b>Compartilhar</b> e escolha<br>"Adicionar à Tela de Início".
+  </div>
+
+  <div class="observacao">
+    Depois, toque no ícone GVP que será criado na Tela de Início para acessar o sistema.
+  </div>
+</body>
+</html>

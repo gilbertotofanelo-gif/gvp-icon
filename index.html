@@ -1,132 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>Visitas</title>
-
-  
-  <!-- Ícone para iPhone/iPad -->
-  <link rel="apple-touch-icon" sizes="180x180"
-        href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png">
-          
-  <!-- Ícone para navegadores -->
-  <link rel="icon" type="image/png"
-        href="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png">
-
-  <!-- Configuração do aplicativo no iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Visitas">
-  <meta name="theme-color" content="#0078D7">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 30px 20px;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #ffffff;
-    }
-
-    img {
-      width: 180px;
-      height: 180px;
-      object-fit: contain;
-      margin-top: 20px;
-    }
-
-    h1 {
-      margin-top: 15px;
-      margin-bottom: 20px;
-      color: #0078D7;
-      font-size: 30px;
-    }
-
-    .instrucao {
-      margin: 25px auto 0;
-      max-width: 360px;
-      padding: 18px;
-      border-radius: 12px;
-      background: #f2f2f2;
-      color: #333333;
-      font-size: 18px;
-      line-height: 1.5;
-      text-align: left;
-    }
-
-    .instrucao h2 {
-      margin-top: 0;
-      color: #0078D7;
-      font-size: 20px;
-    }
-
-    .observacao {
-      margin: 18px auto 0;
-      max-width: 360px;
-      color: #666666;
-      font-size: 16px;
-      line-height: 1.4;
-      text-align: center;
-    }
-  </style>
-
   <script>
-    const urlVisitas =
-      "https://script.google.com/macros/s/AKfycbx6wW5b5yKpzJSJEw04q-7Cx9uct8fvlHR4ifgEZVYPhT3AQuDjXwHrZ9fT47YzMRiT/exec"; 
+    const urlGVP = "https://script.google.com/macros/s/AKfycbwuLAkahBekBJ_TTDYs4Yr7ZcdcsFGICnRoA1jVAfwXrywGDdLjulS0U4CT15h_ifSd/exec";
+    
+    // 🔥 CAPTURA O TOKEN DA URL (?d=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('d');
+    
+    // Monta a URL final do GAS (com o token, se existir)
+    let urlFinal = urlGVP;
+    if (token) {
+        urlFinal += "?d=" + encodeURIComponent(token);
+    }
+
     // iPhone/iPad: identifica quando a página foi aberta pelo ícone da Tela de Início.
     if (window.navigator.standalone === true) {
-      window.location.href = urlVisitas;
+        window.location.href = urlFinal;
     }
 
-    // Android / Chrome: identifica quando a página foi aberta em modo standalone através do manifest.
+    // Android / Chrome: identifica quando a página foi aberta em modo standalone.
     window.addEventListener('DOMContentLoaded', function () {
-      const standalone = window.matchMedia('(display-mode: standalone)').matches;
-      if (standalone) {
-        window.location.href = urlVisitas;
-      }
+        const standalone = window.matchMedia('(display-mode: standalone)').matches;
+        if (standalone) {
+            window.location.href = urlFinal;
+        }
     });
   </script>
-
-</head>
-
-<body>
-
-  <img src="https://raw.githubusercontent.com/gilbertotofanelo-gif/gvp-icon/main/GVP_Icon_Hospital_192.png"
-       alt="Ícone Visitas">
-
-  <h1>Visitas</h1>
-
-  <!-- Instruções para Android -->
-  <div class="instrucao">
-    <h2>📱 Para Android</h2>
-    <ol>
-      <li>Abra esta página no navegador <strong>Chrome</strong>.</li>
-      <li>No menu (⋮), escolha <strong>"Adicionar à tela inicial"</strong>.</li>
-      <li>Confirme o nome do ícone como <strong>Visitas</strong>.</li>
-      <li>O ícone será criado na tela inicial. Toque nele para abrir o sistema.</li>
-    </ol>
-  </div>
-
-  <!-- Instruções para iOS -->
-  <div class="instrucao">
-    <h2>🍎 Para iOS (iPhone/iPad)</h2>
-    <ol>
-      <li>Abra esta página no navegador <strong>Safari</strong>.</li>
-      <li>Toque no botão <strong>Compartilhar</strong> (ícone quadrado com seta para cima).</li>
-      <li>Selecione <strong>"Adicionar à Tela de Início"</strong>.</li>
-      <li>Confirme o nome do ícone como <strong>Visitas</strong>.</li>
-      <li>O ícone será criado na tela inicial. Toque nele para abrir o sistema.</li>
-    </ol>
-  </div>
-
-  <div class="observacao">
-    Depois de adicionar, basta tocar no ícone <strong>Visitas</strong> criado na tela inicial para acessar o sistema.
-  </div>
-
-</body>
-</html>

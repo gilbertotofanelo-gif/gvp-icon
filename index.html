@@ -28,41 +28,80 @@
     .btn-pc:hover { background: #005BB5; }
   </style>
 
-  <script>
-    const urlGVP = "https://script.google.com/macros/s/AKfycbx6wW5b5yKpzJSJEw04q-7Cx9uct8fvlHR4ifgEZVYPhT3AQuDjXwHrZ9fT47YzMRiT/exec";
-    // Pega o token da URL (?d=...)
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('d');
-    
-    let urlFinal = urlGVP;
-    if (token) {
-        urlFinal += "?d=" + encodeURIComponent(token);
+
+<script>
+const urlGVP = "https://script.google.com/macros/s/AKfycbx6wW5b5yKpzJSJEw04q-7Cx9uct8fvlHR4ifgEZVYPhT3AQuDjXwHrZ9fT47YzMRiT/exec";
+
+const urlParams = new URLSearchParams(window.location.search);
+
+function tokenValido(token) {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+        .test(String(token || '').trim());
+}
+
+function gerarToken() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') {
+        return crypto.randomUUID();
     }
 
-    // Se o app for aberto pelo ícone (Standalone), redireciona para o GAS
-    if (window.navigator.standalone === true) {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+function obterToken() {
+    // Se recebeu um token pela URL, reutiliza-o.
+    let token = urlParams.get('d');
+
+    if (tokenValido(token)) {
+        token = token.toLowerCase();
+    } else {
+        token = null;
+    }
+
+    // Caso contrário, procura o token salvo neste site.
+    if (!token) {
+        try {
+            const salvo = localStorage.getItem('gvp_device');
+            if (tokenValido(salvo)) {
+                token = salvo.toLowerCase();
+            }
+        } catch (e) {}
+    }
+
+    // Primeiro acesso neste aparelho: cria um identificador.
+    if (!token) {
+        token = gerarToken();
+    }
+
+    // Guarda o mesmo identificador para as próximas aberturas.
+    try {
+        localStorage.setItem('gvp_device', token);
+    } catch (e) {}
+
+    return token;
+}
+
+const token = obterToken();
+const urlFinal = urlGVP + "?d=" + encodeURIComponent(token);
+
+function abrirSeInstalado() {
+    const standalone =
+        window.navigator.standalone === true ||
+        window.matchMedia('(display-mode: standalone)').matches;
+
+    if (standalone) {
         window.location.replace(urlFinal);
     }
+}
 
-    window.addEventListener('DOMContentLoaded', function () {
-        const standalone = window.matchMedia('(display-mode: standalone)').matches;
-        if (standalone) {
-            window.location.replace(urlFinal);
-        } else {
-            // 🔥 NOVO: Se NÃO for standalone (ex: Windows), configura o botão para funcionar
-            const btn = document.getElementById('btnAcessar');
-            btn.href = urlFinal;
-            // Só mostra o botão se NÃO for um celular (para não confundir o iPhone)
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            if (!isMobile) {
-                btn.style.display = 'inline-block';
-                // Esconde a instrução de colocar na tela inicial, pois no PC não se aplica
-                document.querySelector('.instrucao').style.display = 'none';
-                document.querySelector('.observacao').style.display = 'none';
-            }
-        }
-    });
-  </script>
+abrirSeInstalado();
+
+window.addEventListener('DOMContentLoaded', abrirSeInstalado);
+</script>
+
 </head>
 
 <body>

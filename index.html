@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVP</title>
+
+  <!-- Ícones -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gilbertotofanelo-gif.github.io/gvp-icon/GVP_Icon_Hospital_192.png">
+  <link rel="icon" type="image/png" href="https://gilbertotofanelo-gif.github.io/gvp-icon/GVP_Icon_Hospital_192.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Configurações PWA (iOS e Android) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Visitas">
+  <meta name="theme-color" content="#0078D7">
+
+  <style>
+    body { margin: 0; padding: 30px 20px; font-family: Arial, sans-serif; text-align: center; background: #ffffff; }
+    img { width: 180px; height: 180px; object-fit: contain; margin-top: 20px; }
+    h1 { margin-top: 15px; margin-bottom: 20px; color: #0078D7; font-size: 30px; }
+    .instrucao { margin: 25px auto 0; max-width: 360px; padding: 18px; border-radius: 12px; background: #f2f2f2; color: #333333; font-size: 19px; line-height: 1.5; font-weight: bold; }
+    .observacao { margin: 18px auto 0; max-width: 360px; color: #666666; font-size: 16px; line-height: 1.4; }
+    
+    /* Estilo do botão para computador */
+    .btn-pc { display: none; margin: 30px auto 0; padding: 15px 30px; background: #0078D7; color: white; text-decoration: none; border-radius: 8px; font-size: 20px; font-weight: bold; max-width: 300px; }
+    .btn-pc:hover { background: #005BB5; }
+  </style>
+
+
 <script>
 const urlGVP = "https://script.google.com/macros/s/AKfycbx6wW5b5yKpzJSJEw04q-7Cx9uct8fvlHR4ifgEZVYPhT3AQuDjXwHrZ9fT47YzMRiT/exec";
 
@@ -12,6 +44,7 @@ function gerarToken() {
     if (window.crypto && typeof crypto.randomUUID === 'function') {
         return crypto.randomUUID();
     }
+
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         const r = Math.random() * 16 | 0;
         const v = c === 'x' ? r : (r & 0x3 | 0x8);
@@ -20,64 +53,73 @@ function gerarToken() {
 }
 
 function obterToken() {
+    // Se recebeu um token pela URL, reutiliza-o.
     let token = urlParams.get('d');
+
     if (tokenValido(token)) {
         token = token.toLowerCase();
     } else {
         token = null;
     }
+
+    // Caso contrário, procura o token salvo neste site.
     if (!token) {
         try {
             const salvo = localStorage.getItem('gvp_device');
-            if (tokenValido(salvo)) token = salvo.toLowerCase();
+            if (tokenValido(salvo)) {
+                token = salvo.toLowerCase();
+            }
         } catch (e) {}
     }
-    if (!token) token = gerarToken();
-    try { localStorage.setItem('gvp_device', token); } catch (e) {}
+
+    // Primeiro acesso neste aparelho: cria um identificador.
+    if (!token) {
+        token = gerarToken();
+    }
+
+    // Guarda o mesmo identificador para as próximas aberturas.
+    try {
+        localStorage.setItem('gvp_device', token);
+    } catch (e) {}
+
     return token;
 }
 
 const token = obterToken();
 const urlFinal = urlGVP + "?d=" + encodeURIComponent(token);
 
-function ehStandalone() {
-    return window.navigator.standalone === true
-        || window.matchMedia('(display-mode: standalone)').matches;
-}
+function abrirSeInstalado() {
+    const standalone =
+        window.navigator.standalone === true ||
+        window.matchMedia('(display-mode: standalone)').matches;
 
-function ehMobile() {
-    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-}
-
-function ehDesktop() {
-    return /Windows|Macintosh|Mac OS X|Linux/i.test(navigator.userAgent) && !ehMobile();
-}
-
-function ajustarInterface() {
-    const btn = document.getElementById('btnAcessar');
-
-    // 1) PWA instalado (celular): redireciona direto para o Apps Script
-    if (ehStandalone()) {
+    if (standalone) {
         window.location.replace(urlFinal);
-        return;
     }
-
-    // 2) Desktop (Windows/Mac/Linux): mostra o botão e esconde instruções de celular
-    if (ehDesktop()) {
-        if (btn) {
-            btn.href = urlFinal;          // dá destino ao botão
-            btn.style.display = 'block';  // tira o display:none
-        }
-        const instr = document.querySelector('.instrucao');
-        const obs   = document.querySelector('.observacao');
-        if (instr) instr.style.display = 'none';
-        if (obs)   obs.style.display   = 'none';
-        return;
-    }
-
-    // 3) Celular NÃO instalado: mostra instrução de "Adicionar à Tela de Início"
-    //    (esconde o botão de desktop — já está oculto por padrão no CSS)
 }
 
-document.addEventListener('DOMContentLoaded', ajustarInterface);
+abrirSeInstalado();
+
+window.addEventListener('DOMContentLoaded', abrirSeInstalado);
 </script>
+
+</head>
+
+<body>
+  <img src="https://gilbertotofanelo-gif.github.io/gvp-icon/GVP_Icon_Hospital_192.png" alt="Ícone GVP">
+
+  <h1>GVP</h1>
+
+  <div class="instrucao">
+    Toque em <b>Compartilhar</b> e escolha<br>"Adicionar à Tela de Início".
+  </div>
+
+  <div class="observacao">
+    Depois, toque no ícone GVP que será criado na Tela de Início para acessar o sistema.
+  </div>
+
+  <!-- 🔥 NOVO: Botão que aparece apenas no Windows/PC -->
+  <a href="#" id="btnAcessar" class="btn-pc">Acessar o Sistema</a>
+
+</body>
+</html>

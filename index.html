@@ -120,5 +120,26 @@ window.addEventListener('DOMContentLoaded', abrirSeInstalado);
   <!-- 🔥 NOVO: Botão que aparece apenas no Windows/PC -->
   <a href="#" id="btnAcessar" class="btn-pc">Acessar o Sistema</a>
 
+// ===== ÚNICO ACRÉSCIMO: no Windows/PC mostra o botão e esconde instruções de celular =====
+function ajustarBotaoDesktop() {
+    const isMobile  = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isDesktop = /Windows|Macintosh|Mac OS X/i.test(navigator.userAgent) && !isMobile;
+    if (!isDesktop) return; // celular: sai aqui, sem tocar em nada
+
+    const btn = document.getElementById('btnAcessar');
+    if (btn) {
+        btn.href = urlFinal;          // dá destino ao botão
+        btn.style.display = 'block';  // tira o display:none
+    }
+    const instr = document.querySelector('.instrucao');
+    const obs   = document.querySelector('.observacao');
+    if (instr) instr.style.display = 'none';
+    if (obs)   obs.style.display   = 'none';
+}
+window.addEventListener('DOMContentLoaded', ajustarBotaoDesktop);
+// ===== FIM DO ACRÉSCIMO =====
+
+
+  
 </body>
 </html>
